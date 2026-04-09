@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
     public bool IsSessionEnded { get; private set; }
 
     [SerializeField] private NPCManager npcManager;
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private TimeManager timeManager;
+    [SerializeField] private UIManager uiManager;
 
     private void Awake()
     {
@@ -25,12 +29,27 @@ public class GameManager : MonoBehaviour
         StartSession();
     }
 
+    private void Update()
+    {
+        if (!IsSessionRunning) return;
+
+        timeManager.Tick(Time.deltaTime);
+
+        if (timeManager.IsTimeOver())
+        {
+            EndSession();
+        }
+    }
+
     public void StartSession()
     {
         IsSessionRunning = true;
         IsSessionEnded = false;
 
+        scoreManager.Initialize();
+        timeManager.Initialize();
         npcManager.Initialize();
+        uiManager.Initialize();
     }
 
     public void EndSession()
@@ -39,5 +58,14 @@ public class GameManager : MonoBehaviour
 
         IsSessionRunning = false;
         IsSessionEnded = true;
+
+        if (scoreManager.CurrentScore >= 30)
+        {
+            SceneManager.LoadScene("RedEndingScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("BlackEndingScene");
+        }
     }
 }

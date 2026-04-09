@@ -6,25 +6,32 @@ public class NPCManager : MonoBehaviour
     public static NPCManager Instance { get; private set; }
 
     [SerializeField] private NPCController npcPrefab;
-    [SerializeField] private int targetNpcCount = 5;
-
-    private List<NPCController> activeNpcs = new List<NPCController>();
-    private List<NPCController> pendingRemoveNpcs = new List<NPCController>();
+    [SerializeField] private NPCSpawner npcSpawner;
+    [SerializeField] private int targetNpcCount = 10;
+    [SerializeField] private float spawnInterval = 0.8f;
+    
+    private float spawnTimer = 0f;
+    private readonly List<NPCController> activeNpcs = new List<NPCController>();
+    private readonly List<NPCController> pendingRemoveNpcs = new List<NPCController>();
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
     public void Initialize()
     {
+        ClearAllNpcs();
+
         activeNpcs.Clear();
         pendingRemoveNpcs.Clear();
-
-        for (int i = 0; i < targetNpcCount; i++)
-        {
-            SpawnNpc();
-        }
+        spawnTimer = 0f;
     }
 
     private void Update()
@@ -33,16 +40,34 @@ public class NPCManager : MonoBehaviour
 
         TickAll();
         ProcessPendingRemovals();
-        RefillNpcCount();
+        HandleSpawn();
+    }
+
+    private void HandleSpawn()
+    {
+        if (activeNpcs.Count >= targetNpcCount)
+        {
+            spawnTimer = 0f;
+            return;
+        }
+
+        spawnTimer += Time.deltaTime;
+
+        if (spawnTimer >= spawnInterval)
+        {
+            spawnTimer = 0f;
+            SpawnNpc();
+        }
     }
 
     public void TickAll()
     {
         for (int i = 0; i < activeNpcs.Count; i++)
         {
-            if (activeNpcs[i] != null)
+            NPCController npc = activeNpcs[i];
+            if (npc != null)
             {
-                activeNpcs[i].Tick();
+                npc.Tick();
             }
         }
     }
@@ -85,16 +110,32 @@ public class NPCManager : MonoBehaviour
 
     private void SpawnNpc()
     {
-        Vector2 spawnPos = GetRandomSpawnPosition();
-        NPCController npc = Instantiate(npcPrefab, spawnPos, Quaternion.identity);
-        npc.Initialize();
+        if (npcPrefab == null)
+        {
+            Debug.LogError("NPCManager: npcPrefab is missing.");
+            return;
+        }
+
+        if (npcSpawner == null)
+        {
+            Debug.LogError("NPCManager: npcSpawner is missing.");
+            return;
+        }
+
+        bool success = npcSpawner.TryGetSpawnData(out Vector2 spawnPosition, out Vector2 moveDirection);
+        if (!success) return;
+
+        NPCController npc = Instantiate(npcPrefab, spawnPosition, Quaternion.identity);
+        npc.Initialize(moveDirection);
         activeNpcs.Add(npc);
     }
 
-    private Vector2 GetRandomSpawnPosition()
+    private void ClearAllNpcs()
     {
-        float x = Random.Range(-6f, 6f);
-        float y = Random.Range(-3f, 3f);
-        return new Vector2(x, y);
+        NPCController[] existingNpcs = Object.FindObjectsByType<NPCController>(FindObjectsSortMode.None);
+        for (int i = 0; i < existingNpcs.Length; i++)
+        {
+            Destroy(existingNpcs[i].gameObject);
+        }
     }
 }

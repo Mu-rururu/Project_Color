@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -6,14 +7,31 @@ public class ScoreManager : MonoBehaviour
 
     public int CurrentScore { get; private set; }
 
+    public event Action<int> OnScoreChanged;
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+    }
+
+    public void Initialize()
+    {
+        CurrentScore = 0;
+        OnScoreChanged?.Invoke(CurrentScore);
     }
 
     public void AddScore(int amount)
     {
+        if (!GameManager.Instance.IsSessionRunning) return;
+        if (amount <= 0) return;
+
         CurrentScore += amount;
-        Debug.Log("Score: " + CurrentScore);
+        OnScoreChanged.Invoke(CurrentScore);
     }
 }
