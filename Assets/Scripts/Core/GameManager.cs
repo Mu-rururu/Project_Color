@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
         IsSessionRunning = false;
         IsSessionEnded = true;
 
+        GameResultData.FinalScore = scoreManager.CurrentScore;
+
         if (scoreManager.CurrentScore >= 30)
         {
             SceneManager.LoadScene("RedEndingScene");

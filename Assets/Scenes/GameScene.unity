@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 88638289}
   - component: {fileID: 88638291}
   - component: {fileID: 88638292}
+  - component: {fileID: 88638293}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -331,6 +332,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   attackCooldown: 0.1
   attackRadius: 1.5
+--- !u!114 &88638293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88638284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3adce384b440f3e49afb109713c4bc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVisualController
+  spriteRenderer: {fileID: 88638288}
+  normalSprite: {fileID: 3427114271967980436, guid: 7b54660f2fb82cf408c0d79de761cf3d, type: 3}
+  redSprite: {fileID: 6286595657586805340, guid: e1172f40e41961149b64bde2b4305fc7, type: 3}
 --- !u!1 &168366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 88638285}
+  smoothSpeed: 5
 --- !u!1 &370461121
 GameObject:
   m_ObjectHideFlags: 0
