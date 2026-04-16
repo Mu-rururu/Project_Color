@@ -4,8 +4,8 @@ public class NPCController : MonoBehaviour
 {
     public bool IsPendingRemove { get; private set; }
 
-    [SerializeField] private float moveSpeed = 2.0f;
-    [SerializeField] private float despawnDistance = 18f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float despawnDistance;
 
     private Vector2 moveDirection;
     private Vector2 spawnPosition;
@@ -15,11 +15,6 @@ public class NPCController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        if (rb == null)
-        {
-            Debug.LogError("NPCController: Rigidbody2D is missing.");
-        }
     }
 
     public void Initialize(Vector2 direction)
@@ -30,14 +25,14 @@ public class NPCController : MonoBehaviour
         isInitialized = true;
     }
 
-    public void Tick()
+    public void FixedUpdate()
     {
         if (IsPendingRemove) return;
         if (!isInitialized) return;
         if (!GameManager.Instance.IsSessionRunning) return;
         if (rb == null) return;
 
-        Vector2 nextPosition = rb.position + moveDirection * moveSpeed * Time.deltaTime;
+        Vector2 nextPosition = rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(nextPosition);
 
         if (Vector2.Distance(spawnPosition, rb.position) >= despawnDistance)

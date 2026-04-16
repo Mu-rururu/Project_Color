@@ -5,23 +5,17 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("Spawn Ring")]
-    [SerializeField] private float minSpawnRadius = 7f;
-    [SerializeField] private float maxSpawnRadius = 9f;
+    [SerializeField] private float minSpawnRadius;
+    [SerializeField] private float maxSpawnRadius;
 
     [Header("Target Ring")]
-    [SerializeField] private float minTargetRadius = 4f;
-    [SerializeField] private float maxTargetRadius = 5f;
+    [SerializeField] private float minTargetRadius;
+    [SerializeField] private float maxTargetRadius;
 
     public bool TryGetSpawnData(out Vector2 spawnPosition, out Vector2 moveDirection)
     {
         spawnPosition = Vector2.zero;
         moveDirection = Vector2.zero;
-
-        if (player == null)
-        {
-            Debug.LogError("NPCSpawner: player reference is missing.");
-            return false;
-        }
 
         Vector2 playerPos = player.position;
 
@@ -40,22 +34,5 @@ public class NPCSpawner : MonoBehaviour
 
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         return center + direction * distance;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (player == null) return;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(player.position, minSpawnRadius);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(player.position, maxSpawnRadius);
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(player.position, minTargetRadius);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(player.position, maxTargetRadius);
     }
 }

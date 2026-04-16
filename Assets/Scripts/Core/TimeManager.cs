@@ -5,7 +5,7 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance { get; private set; }
 
-    [SerializeField] private float sessionDuration = 60f;
+    [SerializeField] private float sessionDuration;
     public float RemainingTime { get; private set; }
 
     public event Action<float> OnTimeChanged;

@@ -33,5 +33,7 @@ public class ScoreManager : MonoBehaviour
 
         CurrentScore += amount;
         OnScoreChanged.Invoke(CurrentScore);
+
+        PlayerStateController.Instance.EvaluateTransition(CurrentScore);
     }
 }

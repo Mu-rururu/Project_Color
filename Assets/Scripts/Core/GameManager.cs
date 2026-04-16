@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private PlayerStateController playerStateController;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         timeManager.Initialize();
         npcManager.Initialize();
         uiManager.Initialize();
+        playerStateController.Initialize();
     }
 
     public void EndSession()

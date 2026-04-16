@@ -7,8 +7,8 @@ public class NPCManager : MonoBehaviour
 
     [SerializeField] private NPCController npcPrefab;
     [SerializeField] private NPCSpawner npcSpawner;
-    [SerializeField] private int targetNpcCount = 10;
-    [SerializeField] private float spawnInterval = 0.8f;
+    [SerializeField] private int targetNpcCount;
+    [SerializeField] private float spawnInterval;
     
     private float spawnTimer = 0f;
     private readonly List<NPCController> activeNpcs = new List<NPCController>();
@@ -38,7 +38,6 @@ public class NPCManager : MonoBehaviour
     {
         if (!GameManager.Instance.IsSessionRunning) return;
 
-        TickAll();
         ProcessPendingRemovals();
         HandleSpawn();
     }
@@ -57,18 +56,6 @@ public class NPCManager : MonoBehaviour
         {
             spawnTimer = 0f;
             SpawnNpc();
-        }
-    }
-
-    public void TickAll()
-    {
-        for (int i = 0; i < activeNpcs.Count; i++)
-        {
-            NPCController npc = activeNpcs[i];
-            if (npc != null)
-            {
-                npc.Tick();
-            }
         }
     }
 
@@ -110,18 +97,6 @@ public class NPCManager : MonoBehaviour
 
     private void SpawnNpc()
     {
-        if (npcPrefab == null)
-        {
-            Debug.LogError("NPCManager: npcPrefab is missing.");
-            return;
-        }
-
-        if (npcSpawner == null)
-        {
-            Debug.LogError("NPCManager: npcSpawner is missing.");
-            return;
-        }
-
         bool success = npcSpawner.TryGetSpawnData(out Vector2 spawnPosition, out Vector2 moveDirection);
         if (!success) return;
 

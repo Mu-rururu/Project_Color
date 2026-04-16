@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 88638289}
   - component: {fileID: 88638291}
   - component: {fileID: 88638292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0066d8f0d0bc1489bcae912f6de335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  attackCooldown: 1
+  attackCooldown: 0.1
   attackRadius: 1.5
 --- !u!1 &168366030
 GameObject:
@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 207365046}
   - component: {fileID: 207365045}
   - component: {fileID: 207365048}
+  - component: {fileID: 207365049}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -517,6 +518,19 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &207365049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207365044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc4b83c3bcc18041b91198773e23666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  target: {fileID: 88638285}
 --- !u!1 &370461121
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,11 +563,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1181874982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 440, y: 217}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &370461123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,9 +756,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 555550989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 963c461610ea4814b8b959957a13dfae, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c4c303db0c00db4aa95a0f58c7d4276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateController
+  redThreshold: 30
 --- !u!1 &663292220
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +808,7 @@ MonoBehaviour:
   scoreManager: {fileID: 1741113556}
   timeManager: {fileID: 1101020735}
   uiManager: {fileID: 1687706414}
+  playerStateController: {fileID: 555550991}
 --- !u!1 &671733957
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,8 +917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCManager
   npcPrefab: {fileID: 1184513369248546858, guid: ab10053f5a8e7b5488aa070172341f41, type: 3}
   npcSpawner: {fileID: 168366032}
-  targetNpcCount: 8
-  spawnInterval: 2.5
+  targetNpcCount: 15
+  spawnInterval: 1
 --- !u!1 &876817728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1309465881}
+  - component: {fileID: 1309465882}
   m_Layer: 0
   m_Name: AutoBehaviourController
   m_TagString: Untagged
@@ -1113,6 +1130,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1738607592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309465882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309465880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a199de0a59149e4384263fae2b24967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoBehaviorController
+  player: {fileID: 88638285}
+  autoAttackRange: 1.5
 --- !u!1 &1687706412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,11 +1411,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1181874982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 210}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1873898698
 MonoBehaviour:
   m_ObjectHideFlags: 0
