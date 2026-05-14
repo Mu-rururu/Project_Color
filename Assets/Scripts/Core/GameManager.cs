@@ -61,10 +61,16 @@ public class GameManager : MonoBehaviour
         IsSessionRunning = false;
         IsSessionEnded = true;
 
-        GameResultData.FinalScore = scoreManager.CurrentScore;
+        int finalScore = scoreManager.CurrentScore;
+        GameResultData.FinalScore = finalScore;
 
-        if (scoreManager.CurrentScore >= 30)
+        if (GameProgressData.HasSeenRedEnding && finalScore == 0)
         {
+            SceneManager.LoadScene("WhiteEndingScene");
+        }
+        else if (finalScore >= 30)
+        {
+            GameProgressData.MarkRedEndingSeen();
             SceneManager.LoadScene("RedEndingScene");
         }
         else

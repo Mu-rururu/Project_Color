@@ -38,9 +38,23 @@ public class PlayerMovementHandler : MonoBehaviour
             inputReader.SetInputEnabled(true);
 
             Vector2 input = inputReader.ReadMoveInput();
-            controller.SetMoveVector(input);
+            Vector2 finalMove = input;
+
+            if (ViolenceUrgeController.Instance != null &&
+                ViolenceUrgeController.Instance.IsActive())
+            {
+                finalMove = ViolenceUrgeController.Instance.ComposeMove(input);
+            }
+
+            controller.SetMoveVector(finalMove);
 
             if (inputReader.ConsumeAttackPressed())
+            {
+                combat.TryAttack();
+            }
+
+            if (ViolenceUrgeController.Instance != null &&
+                ViolenceUrgeController.Instance.ShouldAutoAttack())
             {
                 combat.TryAttack();
             }

@@ -945,6 +945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 876817729}
+  - component: {fileID: 876817730}
   m_Layer: 0
   m_Name: ViolenceUrgeController
   m_TagString: Untagged
@@ -967,6 +968,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1738607592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &876817730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876817728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef69900d55305640afa058bb1a6671a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViolenceUrgeController
+  player: {fileID: 88638285}
+  urgeStrength: 0.35
+  autoAttackRange: 1.5
+  enableAutoAttack: 1
 --- !u!1 &1101020733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,6 +1224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   scoreText: {fileID: 370461123}
   timeText: {fileID: 1873898698}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1738607591
 GameObject:
   m_ObjectHideFlags: 0
