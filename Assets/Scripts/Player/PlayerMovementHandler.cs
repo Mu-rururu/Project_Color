@@ -5,12 +5,14 @@ public class PlayerMovementHandler : MonoBehaviour
     private PlayerInputReader inputReader;
     private PlayerController controller;
     private PlayerCombat combat;
+    private PlayerAnimationController animationController;
 
     private void Awake()
     {
         inputReader = GetComponent<PlayerInputReader>();
         controller = GetComponent<PlayerController>();
         combat = GetComponent<PlayerCombat>();
+        animationController = GetComponent<PlayerAnimationController>();
     }
 
     private void Update()
@@ -18,6 +20,7 @@ public class PlayerMovementHandler : MonoBehaviour
         if (!GameManager.Instance.IsSessionRunning)
         {
             controller.StopMove();
+            animationController.UpdateMoveAnimation(Vector2.zero);
             return;
         }
 
@@ -27,6 +30,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
             Vector2 autoMove = AutoBehaviorController.Instance.CalculateAutoMove();
             controller.SetMoveVector(autoMove);
+            animationController.UpdateMoveAnimation(autoMove);
 
             if (AutoBehaviorController.Instance.ShouldAutoAttack())
             {
@@ -47,10 +51,14 @@ public class PlayerMovementHandler : MonoBehaviour
             }
 
             controller.SetMoveVector(finalMove);
+            animationController.UpdateMoveAnimation(finalMove);
 
             if (inputReader.ConsumeAttackPressed())
             {
-                combat.TryAttack();
+                if (combat.TryAttack())
+                {
+                    animationController.PlayAttackAnimation();
+                }
             }
 
             if (ViolenceUrgeController.Instance != null &&
