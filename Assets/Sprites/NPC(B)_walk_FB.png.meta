@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 544a49d5d7fa02d4abd668bf19006298
+guid: c84318b9184271345a36e350a23f09ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6305945810448017353
-    second: Character_Red_0
+      213: 6829664081942027993
+    second: NPC(B)_walk_FB_0
+  - first:
+      213: 4897701201894622670
+    second: NPC(B)_walk_FB_1
+  - first:
+      213: 6032144528031995436
+    second: NPC(B)_walk_FB_2
+  - first:
+      213: 8964097811674989470
+    second: NPC(B)_walk_FB_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,23 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_Red_0
+      name: NPC(B)_walk_FB_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1
-        width: 42
-        height: 56
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 738126b12b7cc78a0800000000000000
-      internalID: -6305945810448017353
+      spriteID: 9de16632c47d7ce50800000000000000
+      internalID: 6829664081942027993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC(B)_walk_FB_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5cee24b4128f340800000000000000
+      internalID: 4897701201894622670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC(B)_walk_FB_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26d9231d7b76b350800000000000000
+      internalID: 6032144528031995436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC(B)_walk_FB_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e938eb4477fd66c70800000000000000
+      internalID: 8964097811674989470
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9b0a22273a3e890448b806614f9dc969
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +208,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Character_Red_0: -6305945810448017353
+      NPC(B)_walk_FB_0: 6829664081942027993
+      NPC(B)_walk_FB_1: 4897701201894622670
+      NPC(B)_walk_FB_2: 6032144528031995436
+      NPC(B)_walk_FB_3: 8964097811674989470
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -16,6 +16,10 @@ public class PlayerStateController : MonoBehaviour
 
     [SerializeField] private int redThreshold = 30;
 
+    [Header("Player References")]
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private PlayerCombat playerCombat;
+
     public event Action<PlayerState> OnStateChanged;
 
     private void Awake()
@@ -33,6 +37,13 @@ public class PlayerStateController : MonoBehaviour
     {
         CurrentState = PlayerState.Black;
         HasEnteredRedThisSession = false;
+
+        if (playerController != null)
+            playerController.SetRedState(false);
+
+        if (playerCombat != null)
+            playerCombat.SetRedState(false);
+
         OnStateChanged?.Invoke(CurrentState);
     }
 
@@ -51,6 +62,13 @@ public class PlayerStateController : MonoBehaviour
     {
         CurrentState = PlayerState.Red;
         HasEnteredRedThisSession = true;
+
+        if (playerController != null)
+            playerController.SetRedState(true);
+
+        if (playerCombat != null)
+            playerCombat.SetRedState(true);
+
         OnStateChanged?.Invoke(CurrentState);
     }
 

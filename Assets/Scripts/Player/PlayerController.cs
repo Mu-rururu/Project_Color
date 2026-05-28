@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    [Header("Move Speed")]
+    [SerializeField] private float blackMoveSpeed = 4f;
+    [SerializeField] private float redMoveSpeed = 8f;
+
+    private float currentMoveSpeed;
 
     private Rigidbody2D rb;
     private Vector2 pendingMoveVector;
@@ -10,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentMoveSpeed = blackMoveSpeed;
     }
 
     public void SetMoveVector(Vector2 moveVector)
@@ -25,6 +30,11 @@ public class PlayerController : MonoBehaviour
         pendingMoveVector = Vector2.zero;
     }
 
+    public void SetRedState(bool isRed)
+    {
+        currentMoveSpeed = isRed ? redMoveSpeed : blackMoveSpeed;
+    }
+
     private void FixedUpdate()
     {
         if (!GameManager.Instance.IsSessionRunning)
@@ -33,6 +43,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        rb.linearVelocity = pendingMoveVector * moveSpeed;
+        rb.linearVelocity = pendingMoveVector * currentMoveSpeed;
     }
 }

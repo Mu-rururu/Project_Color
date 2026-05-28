@@ -307,7 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc51231aca817d4cb4dfc04716e7e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  blackMoveSpeed: 4
+  redMoveSpeed: 8
 --- !u!114 &88638291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0066d8f0d0bc1489bcae912f6de335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  attackCooldown: 1
+  blackAttackCooldown: 1
+  redAttackCooldown: 0.2
   attackRadius: 1.5
 --- !u!114 &88638293
 MonoBehaviour:
@@ -341,7 +343,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88638284}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3adce384b440f3e49afb109713c4bc2e, type: 3}
   m_Name: 
@@ -385,6 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
   animator: {fileID: 88638294}
   spriteRenderer: {fileID: 88638288}
+  blackController: {fileID: 9100000, guid: 90f8217636b047a43a5ce7b33aece7a3, type: 2}
+  redController: {fileID: 22100000, guid: dc63d658351da4f45957f7953b34daf2, type: 2}
 --- !u!1 &168366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateController
   redThreshold: 30
+  playerController: {fileID: 88638290}
+  playerCombat: {fileID: 88638292}
 --- !u!1 &555671978
 GameObject:
   m_ObjectHideFlags: 0

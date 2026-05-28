@@ -34,7 +34,10 @@ public class PlayerMovementHandler : MonoBehaviour
 
             if (AutoBehaviorController.Instance.ShouldAutoAttack())
             {
-                combat.TryAttack();
+                if (combat.TryAttack())
+                {
+                    animationController.PlayAttackAnimation();
+                }
             }
         }
         else

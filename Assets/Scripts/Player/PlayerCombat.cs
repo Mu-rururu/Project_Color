@@ -4,9 +4,12 @@ public class PlayerCombat : MonoBehaviour
 {
     public static PlayerCombat Instance { get; private set; }
 
-    [SerializeField] private float attackCooldown = 1.0f;
+    [Header("Attack")]
+    [SerializeField] private float blackAttackCooldown = 1.0f;
+    [SerializeField] private float redAttackCooldown = 0.2f;
     [SerializeField] private float attackRadius = 1.5f;
 
+    private float currentAttackCooldown;
     private float lastAttackTime = -999f;
 
     private void Awake()
@@ -18,11 +21,12 @@ public class PlayerCombat : MonoBehaviour
         }
 
         Instance = this;
+        currentAttackCooldown = blackAttackCooldown;
     }
 
     public bool IsAttackReady()
     {
-        return Time.time >= lastAttackTime + attackCooldown;
+        return Time.time >= lastAttackTime + currentAttackCooldown;
     }
 
     public bool TryAttack()
@@ -33,5 +37,10 @@ public class PlayerCombat : MonoBehaviour
         lastAttackTime = Time.time;
         AttackResolutionSystem.Instance.ResolveAttack(transform.position, attackRadius);
         return true;
+    }
+
+    public void SetRedState(bool isRed)
+    {
+        currentAttackCooldown = isRed ? redAttackCooldown : blackAttackCooldown;
     }
 }

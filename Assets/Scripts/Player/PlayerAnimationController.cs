@@ -5,6 +5,10 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [Header("Animator Controllers")]
+    [SerializeField] private RuntimeAnimatorController blackController;
+    [SerializeField] private RuntimeAnimatorController redController;
+
     private void Awake()
     {
         if (animator == null)
@@ -12,6 +16,24 @@ public class PlayerAnimationController : MonoBehaviour
 
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        PlayerStateController.Instance.OnStateChanged += OnPlayerStateChanged;
+        OnPlayerStateChanged(PlayerStateController.Instance.CurrentState);
+    }
+
+    private void OnPlayerStateChanged(PlayerState state)
+    {
+        if (state == PlayerState.Red)
+        {
+            animator.runtimeAnimatorController = redController;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = blackController;
+        }
     }
 
     public void UpdateMoveAnimation(Vector2 move)
@@ -34,5 +56,13 @@ public class PlayerAnimationController : MonoBehaviour
     public void PlayAttackAnimation()
     {
         animator.SetTrigger("Attack");
+    }
+
+    private void OnDestroy()
+    {
+        if (PlayerStateController.Instance != null)
+        {
+            PlayerStateController.Instance.OnStateChanged -= OnPlayerStateChanged;
+        }
     }
 }
