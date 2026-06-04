@@ -13,6 +13,7 @@ public class NPCController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isInitialized;
     private bool isDead;
+    private NPCSoundController soundController;
 
     private NPCAnimationController animationController;
 
@@ -20,6 +21,7 @@ public class NPCController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<NPCAnimationController>();
+        soundController = GetComponent<NPCSoundController>();
     }
 
     public void Initialize(Vector2 direction)
@@ -75,6 +77,11 @@ public class NPCController : MonoBehaviour
         if (animationController != null)
         {
             animationController.PlayDeathAnimation();
+        }
+
+        if (soundController != null)
+        {
+            soundController.PlayDeathSound();
         }
 
         Invoke(nameof(RequestRemoveAfterDeath), deathAnimationDuration);

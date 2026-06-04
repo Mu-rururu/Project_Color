@@ -6,6 +6,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private PlayerController controller;
     private PlayerCombat combat;
     private PlayerAnimationController animationController;
+    private PlayerSoundController soundController;
 
     private void Awake()
     {
@@ -13,6 +14,7 @@ public class PlayerMovementHandler : MonoBehaviour
         controller = GetComponent<PlayerController>();
         combat = GetComponent<PlayerCombat>();
         animationController = GetComponent<PlayerAnimationController>();
+        soundController = GetComponent<PlayerSoundController>();
     }
 
     private void Update()
@@ -21,6 +23,7 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             controller.StopMove();
             animationController.UpdateMoveAnimation(Vector2.zero);
+            soundController.UpdateWalkSound(Vector2.zero);
             return;
         }
 
@@ -31,12 +34,14 @@ public class PlayerMovementHandler : MonoBehaviour
             Vector2 autoMove = AutoBehaviorController.Instance.CalculateAutoMove();
             controller.SetMoveVector(autoMove);
             animationController.UpdateMoveAnimation(autoMove);
+            soundController.UpdateWalkSound(autoMove);
 
             if (AutoBehaviorController.Instance.ShouldAutoAttack())
             {
                 if (combat.TryAttack())
                 {
                     animationController.PlayAttackAnimation();
+                    soundController.PlayAttackSound();
                 }
             }
         }
@@ -55,12 +60,14 @@ public class PlayerMovementHandler : MonoBehaviour
 
             controller.SetMoveVector(finalMove);
             animationController.UpdateMoveAnimation(finalMove);
+            soundController.UpdateWalkSound(finalMove);
 
             if (inputReader.ConsumeAttackPressed())
             {
                 if (combat.TryAttack())
                 {
                     animationController.PlayAttackAnimation();
+                    soundController.PlayAttackSound();
                 }
             }
 
