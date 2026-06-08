@@ -197,8 +197,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.4, y: 0.55}
+  m_Offset: {x: 0, y: -0.019471448}
+  m_Size: {x: 0.40000004, y: 0.5110575}
   m_Direction: 0
 --- !u!50 &88638287
 Rigidbody2D:
@@ -520,7 +520,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -920,13 +920,13 @@ MonoBehaviour:
   treePrefab: {fileID: 8158452293363189373, guid: e5dff8d6af1f8b149b7a3d8afe11fe3d, type: 3}
   tileWidth: 30.72
   tileHeight: 17.28
-  houseCount: 3
-  streetLampCount: 6
-  treeCount: 10
+  houseCount: 2
+  streetLampCount: 3
+  treeCount: 5
   maxAttemptsPerObject: 30
-  houseMinDistance: 6
-  streetLampMinDistance: 2
-  treeMinDistance: 1
+  houseMinDistance: 12
+  streetLampMinDistance: 4
+  treeMinDistance: 2
   carSpawnChance: 0.4
   carMinDistanceFromHouse: 2
   carMaxDistanceFromHouse: 5
@@ -934,10 +934,10 @@ MonoBehaviour:
   carRadius: 0.8
   streetLampRadius: 0.5
   treeRadius: 0.7
-  houseOtherMinDistance: 3
-  carOtherMinDistance: 2
-  streetLampOtherMinDistance: 1.5
-  treeOtherMinDistance: 2
+  houseOtherMinDistance: 6
+  carOtherMinDistance: 4
+  streetLampOtherMinDistance: 3
+  treeOtherMinDistance: 4
 --- !u!1 &663292220
 GameObject:
   m_ObjectHideFlags: 0

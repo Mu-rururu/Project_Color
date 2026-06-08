@@ -7,6 +7,13 @@ public class NPCController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private float despawnDistance = 18f;
     [SerializeField] private float deathAnimationDuration = 0.5f;
+    
+    [Header("Stuck Check")]
+    [SerializeField] private float stuckSpeedThreshold = 0.1f;
+    [SerializeField] private float stuckRemoveDelay = 0.8f;
+
+    private Vector2 lastPosition;
+    private float stuckTimer;
 
     private Vector2 moveDirection;
     private Vector2 spawnPosition;
@@ -29,6 +36,9 @@ public class NPCController : MonoBehaviour
         IsPendingRemove = false;
         isDead = false;
 
+        lastPosition = transform.position;
+        stuckTimer = 0f;
+
         moveDirection = direction.normalized;
         spawnPosition = transform.position;
         isInitialized = true;
@@ -50,10 +60,34 @@ public class NPCController : MonoBehaviour
         Vector2 nextPosition = rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(nextPosition);
 
+        CheckStuck();
+
         if (Vector2.Distance(spawnPosition, rb.position) >= despawnDistance)
         {
             NPCManager.Instance.RequestRemove(this);
         }
+    }
+
+    private void CheckStuck()
+    {
+        float movedDistance = Vector2.Distance(rb.position, lastPosition);
+        float actualSpeed = movedDistance / Time.fixedDeltaTime;
+
+        if (actualSpeed <= stuckSpeedThreshold)
+        {
+            stuckTimer += Time.fixedDeltaTime;
+
+            if (stuckTimer >= stuckRemoveDelay)
+            {
+                NPCManager.Instance.RequestRemove(this);
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
+
+        lastPosition = rb.position;
     }
 
     public void OnHit()
