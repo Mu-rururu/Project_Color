@@ -13,6 +13,7 @@ public class PlayerSoundController : MonoBehaviour
     public void UpdateWalkSound(Vector2 move)
     {
         bool isMoving = move.sqrMagnitude > 0.01f;
+        walkSource.volume = SoundSettings.SFXVolume;
 
         if (isMoving)
         {
@@ -35,7 +36,8 @@ public class PlayerSoundController : MonoBehaviour
     public void PlayAttackSound()
     {
         if (attackClip == null) return;
+        if (sfxSource == null) return;
 
-        sfxSource.PlayOneShot(attackClip);
+        sfxSource.PlayOneShot(attackClip, SoundSettings.SFXVolume);
     }
 }

@@ -19,6 +19,17 @@ public class BGMPlayer : MonoBehaviour
         audioSource.clip = bgmClip;
         audioSource.loop = true;
         audioSource.playOnAwake = false;
+        audioSource.volume = SoundSettings.BGMVolume;
         audioSource.Play();
+    }
+
+    public void SetVolume(float volume)
+    {
+        SoundSettings.BGMVolume = volume;
+
+        if (audioSource != null)
+        {
+            audioSource.volume = volume;
+        }
     }
 }

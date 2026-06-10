@@ -15,6 +15,6 @@ public class NPCSoundController : MonoBehaviour
     {
         if (deathClip == null) return;
 
-        sfxSource.PlayOneShot(deathClip);
+        sfxSource.PlayOneShot(deathClip, SoundManager.Instance.SFXVolume);
     }
 }

@@ -40,12 +40,12 @@ public class UIManager : MonoBehaviour
 
     public void RefreshScore(int score)
     {
-        scoreText.text = "Score : " + score;
+        scoreText.text = score.ToString();
     }
 
     public void RefreshTime(float remainingTime)
     {
-        timeText.text = "Time : " + Mathf.CeilToInt(remainingTime);
+        timeText.text = Mathf.CeilToInt(remainingTime).ToString();
     }
 
     private void OnPlayerStateChanged(PlayerState state)
