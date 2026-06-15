@@ -590,8 +590,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
+  m_sharedMaterial: {fileID: 1078441777965189715, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -983,8 +983,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SFX
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
+  m_sharedMaterial: {fileID: 1078441777965189715, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1429,8 +1429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BGM
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
+  m_sharedMaterial: {fileID: 1078441777965189715, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2290,8 +2290,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Close
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
+  m_sharedMaterial: {fileID: 1078441777965189715, guid: 37fee9c680ee6fa4ca0b5b0fc8dc894d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2650,6 +2650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionUIController
   optionPanel: {fileID: 2120049857}
+  bgmSlider: {fileID: 132608452}
+  sfxSlider: {fileID: 72573191}
 --- !u!1 &2010491726
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,7 +74,11 @@ public class PlayerMovementHandler : MonoBehaviour
             if (ViolenceUrgeController.Instance != null &&
                 ViolenceUrgeController.Instance.ShouldAutoAttack())
             {
-                combat.TryAttack();
+                if (combat.TryAttack())
+                {
+                    animationController.PlayAttackAnimation();
+                    soundController.PlayAttackSound();
+                }
             }
         }
     }
